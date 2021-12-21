@@ -47,6 +47,9 @@ sp-version = { default-features = false, version = '3.0.0' }
 
 # local dependencies
 pallet-template = { default-features = false, path = '../pallets/template', version = '3.0.0' }
+plonk-pallet = { version = '0.2', default-features = false }
+rand_core = {version="0.6", default-features = false }
+zk-test = { default-features = false, path = '../pallets/zk-test', version = '3.0.0' }
 
 [features]
 default = ['std']

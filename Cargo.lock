@@ -407,11 +407,10 @@ checksum = "904dfeac50f3cdaba28fc6f57fdcddb75f49ed61346676a78c4ffe55877802fd"
 
 [[package]]
 name = "bincode"
-version = "1.3.2"
+version = "1.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d175dfa69e619905c4c3cdb7c3c203fa3bdd5d51184e3afdb2742c0280493772"
+checksum = "b1f45e9417d87227c7a56d22e471c6206462cba514c7590c09aff4cf6d1ddcad"
 dependencies = [
- "byteorder",
  "serde",
 ]
 
@@ -619,9 +618,9 @@ checksum = "e3b5ca7a04898ad4bcd41c90c5285445ff5b791899bb1b0abdd2a2aa791211d7"
 
 [[package]]
 name = "byteorder"
-version = "1.3.4"
+version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08c48aae112d48ed9f069b33538ea9e3e90aa263cfa3d1c24309612b1f7472de"
+checksum = "14c189c53d098945499cdfa7ecc63567cf3886b3332b312a5b4585d8d3a6a610"
 
 [[package]]
 name = "bytes"
@@ -1159,6 +1158,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "derive-hex"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4b6618553c32cd1c1f4fbdb9418cc035f3168422f24406ebb08576f6db5ed6ec"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "derive_more"
 version = "0.99.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1237,6 +1247,15 @@ checksum = "c4d33be9473d06f75f58220f71f7a9317aca647dc061dbd3c361b0bef505fbea"
 dependencies = [
  "byteorder",
  "quick-error 1.2.3",
+]
+
+[[package]]
+name = "dusk-bytes"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4422ec33d6a528cc35d889a75f79e58101a9bc73522f34bb3405a36bedc90f8a"
+dependencies = [
+ "derive-hex",
 ]
 
 [[package]]
@@ -3296,6 +3315,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "merlin"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58c38e2799fc0978b65dfff8023ec7843e2330bb462f19198840b34b6582397d"
+dependencies = [
+ "byteorder",
+ "keccak",
+ "rand_core 0.6.2",
+ "zeroize",
+]
+
+[[package]]
 name = "minicbor"
 version = "0.7.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3574,6 +3605,8 @@ dependencies = [
  "pallet-transaction-payment",
  "pallet-transaction-payment-rpc-runtime-api",
  "parity-scale-codec",
+ "plonk-pallet",
+ "rand_core 0.6.2",
  "serde",
  "sp-api",
  "sp-block-builder",
@@ -3587,6 +3620,7 @@ dependencies = [
  "sp-transaction-pool",
  "sp-version",
  "substrate-wasm-builder",
+ "zk-test",
 ]
 
 [[package]]
@@ -3931,9 +3965,9 @@ dependencies = [
 
 [[package]]
 name = "parity-db"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "495197c078e54b8735181aa35c00a327f7f3a3cc00a1ee8c95926dd010f0ec6b"
+checksum = "2e337f62db341435f0da05b8f6b97e984ef4ea5800510cd07c2d624688c40b47"
 dependencies = [
  "blake2-rfc",
  "crc32fast",
@@ -3962,6 +3996,24 @@ dependencies = [
  "static_assertions",
  "unsigned-varint 0.7.0",
  "url 2.2.1",
+]
+
+[[package]]
+name = "parity-plonk"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cacb3a8898d1cd50327b3bd391aeb33d6213ecf1fcd76d8183702dead9837eba"
+dependencies = [
+ "dusk-bytes",
+ "hashbrown",
+ "itertools",
+ "merlin 3.0.0",
+ "parity-scale-codec",
+ "plonk-bls12_381",
+ "plonk-jubjub",
+ "rand_core 0.6.2",
+ "serde",
+ "sp-std",
 ]
 
 [[package]]
@@ -3994,6 +4046,16 @@ name = "parity-send-wrapper"
 version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "aa9777aa91b8ad9dd5aaa04a9b6bcb02c7f1deb952fca5a66034d5e63afc5c6f"
+
+[[package]]
+name = "parity-subtle"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03986b14e8a6c5abb7d2ca75641973ef7202b8275e35828f80951e78cb3f9790"
+dependencies = [
+ "parity-scale-codec",
+ "serde",
+]
 
 [[package]]
 name = "parity-tokio-ipc"
@@ -4072,6 +4134,17 @@ dependencies = [
  "sha-1 0.8.2",
  "slab",
  "url 2.2.1",
+]
+
+[[package]]
+name = "parity_rand_xorshift"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "225c90113080de5b3623900110326bcdf86f3813c3594ab41bd6769964e64b0d"
+dependencies = [
+ "parity-scale-codec",
+ "rand_core 0.6.2",
+ "sp-std",
 ]
 
 [[package]]
@@ -4345,6 +4418,51 @@ name = "platforms"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "989d43012e2ca1c4a02507c67282691a0a3207f9dc67cec596b43fe925b3d325"
+
+[[package]]
+name = "plonk-bls12_381"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7957e60076d11d439bf4c983c0af773cc431994b7f4d84510911212c6f88f17d"
+dependencies = [
+ "byteorder",
+ "dusk-bytes",
+ "parity-scale-codec",
+ "parity-subtle",
+ "rand_core 0.6.2",
+ "serde",
+ "sp-std",
+]
+
+[[package]]
+name = "plonk-jubjub"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5dff2092d69924912726d65e283c3a1587275b6a087b85f8507b1bbdd0695f79"
+dependencies = [
+ "dusk-bytes",
+ "parity-subtle",
+ "plonk-bls12_381",
+ "rand_core 0.6.2",
+]
+
+[[package]]
+name = "plonk-pallet"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b5adf9cda58b0122f04591f1f8580ef19d156f344086c8094574196d492a558"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-plonk",
+ "parity-scale-codec",
+ "parity_rand_xorshift",
+ "plonk-jubjub",
+ "rand 0.8.3",
+ "rand_core 0.6.2",
+ "serde",
+ "sp-std",
+]
 
 [[package]]
 name = "polling"
@@ -5278,7 +5396,7 @@ dependencies = [
  "futures 0.3.13",
  "futures-timer 3.0.2",
  "log",
- "merlin",
+ "merlin 2.0.1",
  "num-bigint",
  "num-rational",
  "num-traits",
@@ -5521,7 +5639,7 @@ dependencies = [
  "futures 0.3.13",
  "futures-util",
  "hex",
- "merlin",
+ "merlin 2.0.1",
  "parking_lot 0.11.1",
  "rand 0.7.3",
  "serde_json",
@@ -5967,7 +6085,7 @@ dependencies = [
  "arrayvec 0.5.2",
  "curve25519-dalek 2.1.2",
  "getrandom 0.1.16",
- "merlin",
+ "merlin 2.0.1",
  "rand 0.7.3",
  "rand_core 0.5.1",
  "serde",
@@ -6095,18 +6213,18 @@ dependencies = [
 
 [[package]]
 name = "serde"
-version = "1.0.125"
+version = "1.0.132"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "558dc50e1a5a5fa7112ca2ce4effcb321b0300c0d4ccf0776a9f60cd89031171"
+checksum = "8b9875c23cf305cd1fd7eb77234cbb705f21ea6a72c637a5c6db5fe4b8e7f008"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.125"
+version = "1.0.132"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b093b7a2bb58203b5da3056c05b4ec1fed827dcfdb37347a8841695263b3d06d"
+checksum = "ecc0db5cb2556c0e558887d9bbdcf6ac4471e83ff66cf696e5419024d1606276"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -6487,7 +6605,7 @@ version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a153085b1542b5cbe23686433cd36d1a634964f1b707671d0ffb01d8d9313047"
 dependencies = [
- "merlin",
+ "merlin 2.0.1",
  "parity-scale-codec",
  "sp-api",
  "sp-application-crypto",
@@ -6545,7 +6663,7 @@ dependencies = [
  "lazy_static",
  "libsecp256k1",
  "log",
- "merlin",
+ "merlin 2.0.1",
  "num-traits",
  "parity-scale-codec",
  "parity-util-mem",
@@ -6681,7 +6799,7 @@ dependencies = [
  "async-trait",
  "derive_more",
  "futures 0.3.13",
- "merlin",
+ "merlin 2.0.1",
  "parity-scale-codec",
  "parking_lot 0.11.1",
  "schnorrkel",
@@ -8430,6 +8548,22 @@ dependencies = [
  "quote",
  "syn",
  "synstructure",
+]
+
+[[package]]
+name = "zk-test"
+version = "3.0.0"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "plonk-pallet",
+ "rand_core 0.6.2",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
